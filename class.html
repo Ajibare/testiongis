@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ut</title>
+   
+</head>
+<style>
+    .error{
+        color: red;
+    }
+
+    .success{
+        color: green;
+    }
+</style>
+
+<body>
+    
+
+    <h1 id="title">Dom Test</h1>
+    <p></p>
+
+    <form id="userForm">
+        <div>
+            <label for="">Name:</label>
+        <input type="text" id="nameInput">
+
+        </div>
+
+        <button type="submit">submit</button>
+
+    </form>
+
+    <div id="message"></div>
+    <button id="changeTitleBtn">Change Title</button>
+
+
+    <script>
+        const title = document.getElementById('title')
+        const form = document.getElementById('userForm')
+        const nameInput = document.getElementById('nameInput')
+        const message = document.getElementById('message')
+        const changeTitleBtn = document.getElementById('changeTitleBtn')
+
+        // Event button click
+        changeTitleBtn.addEventListener("click", ()=>{
+           title.textContent = "Title Changed!";
+           console.log('Title was changed')
+        })
+
+              // Event form submit
+        form.addEventListener('submit', (event) =>{
+            event.preventDefault()
+
+            const name = nameInput.value.trim()
+
+            if(name === ""){
+                message.textContent = "Name is reqiured";
+                message.className = "error";
+                console.warn('form sumbitted with empty name');
+                return;
+            }
+
+              message.textContent = `Hello, ${name}!`;
+            //   message.textContent = 'Hello', +  name + '!';
+                message.className = "success";
+
+             console.log({name})
+        })
+
+
+
+    </script>
+
+</body>
+</html>

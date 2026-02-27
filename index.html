@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DOM Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="title">DOM Test</h1>
+
+  <!-- FORM -->
+  <form id="userForm">
+    <label>
+      Name:
+      <input type="text" id="nameInput" />
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="message"></p>
+
+  <button id="changeTitleBtn">Change Title</button>
+
+  <script>
+    // DOM selection (best practice: cache elements)
+    const title = document.getElementById("title");
+    const form = document.getElementById("userForm");
+    const nameInput = document.getElementById("nameInput");
+    const message = document.getElementById("message");
+    const changeTitleBtn = document.getElementById("changeTitleBtn");
+
+    // Event: button click
+    changeTitleBtn.addEventListener("click", () => {
+      title.textContent = "Title Changed!";
+      console.log("Title was changed"); // debugging
+    });
+
+    // Event: form submit
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // stop page reload
+
+      const name = nameInput.value.trim();
+
+      // Simple validation
+      if (name === "") {
+        message.textContent = "Name is required!";
+        message.className = "error";
+        console.warn("Form submitted with empty name");
+        return;
+      }
+
+      // ES6 template literal
+      message.textContent = `Hello, ${name}!`;
+      message.className = "success";
+
+      console.log({ name }); // debugging object output
+    });
+  </script>
+
+</body>
+</html>
